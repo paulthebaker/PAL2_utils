@@ -83,7 +83,7 @@ EQUADs should be smaller than the RMS timing noise.
 PAL2 uses log<sub>10</sub>(_Q_) as its search parameter, so raw output of `-7` corresponds to 10<sup>-7</sup> sec, 100 ns.
 If you find yourself looking in an unstripped `.par` file, you may notice that NANOGrav records EQUAD in units of &mu;s, while the other PTAs use the PAL2 log convention.
 
-EQUAD uses the sam naming convention as EFAC _i.e._:
+EQUAD uses the same naming convention as EFAC _i.e._:
 ```
 equad_J1909-3744-Rcvr_800_GASP
 ```
@@ -96,7 +96,7 @@ Note that ECORR is outside of the _&delta;<sub>f f'</sub> term.
 ECORRs should be smaller than the RMS timing noise.
 PAL2 uses log<sub>10</sub>(_J_) as its search parameter, so raw output of `-7` corresponds to 10<sup>-7</sup> sec, 100 ns.
 In PAL2 ECORR is keyed as `'jitter_equad'` (quadrature additive noise from jitter...) and uses flags like `incJitterEquad=True`
-In the output PAL2 lavels ECORRs with names like:
+In the output PAL2 labels ECORRs with names like:
 ```
 jitter_q_J1909-3744-Rcvr1_2_GASP
 ```
