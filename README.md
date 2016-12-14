@@ -35,6 +35,20 @@ The simplest fix is to **comment out lines 393-402 in PALdatafile.py**.
 
 For other runtime issues see my [notes](notes.md).
 
+# The Basic Noise model
+As discussed in Berlin, the basic noise model contains: red noise, DM variations, EFAC, EQUAD, and ECORR (jitter).
+This model is initialized in `PAL2_ipta_noise.py` as:
+```
+basicModel = model.makeModelDict(incRedNoise=True, noiseModel='powerlaw', nfreqs=20, 
+                                 incDM=True, dmModel='powerlaw', ndmfreqs=20,
+                                 incEquad=True, incJitterEquad=True,
+                                 likfunc='mark6')
+```
+We are using the 'mark6' likelihood function (which is again specified directly to the sampler), and the 'mark3' prior.
+
+More complicated noise models will include band noise, system noise, non-stationary noise (implemented with wavelets and shapelets), and/or periodic DM variations.
+
+
 # Notes on PAL2's noise parameters
 The covariance matrix for the basic white noise model is:
 
