@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 from __future__ import division
 
-import glob, os, shutil
+import os
 import argparse
 import numpy as np
 
@@ -43,7 +43,7 @@ with open(pfilename) as pfile:
 #####
 ##  POST PROCESSING
 #####
-#TODO what other post processing do we want?  should this be a separate script?
+#TODO what other post processing do we want?
 print "post processing for PSR: "+this_PSR+"\n"
 
 # read in chain file and clip burn in
