@@ -69,7 +69,7 @@ with open(this_PSR+'/params.txt', 'w') as pfile: # write params to file for use 
         pfile.write("{}\n".format(this_param))
 
 #####
-##  SETUP MCMC FOR SINGLE PULSAR NOISE ANALYSIS
+##  MCMC FOR SINGLE PULSAR NOISE ANALYSIS
 #####
 
 p0 = model.initParameters()       # prior draw for starting location
@@ -86,8 +86,9 @@ print "running sampler for PSR: "+this_PSR
 sampler = ptmcmc.PTSampler(len(p0), lnlike, lnprior, cov,  outDir=chaindir,
                         loglkwargs=loglkwargs)
 
-# run sampler for a max of 100 000 samples or for 1000 effective samples
-# run 1 sample per PSR to test
+#####
+##  RUN SAMPLER!
+#####
 N = args.Nsamp
 Neff = args.Neff
 sampler.sample(p0, N, neff=Neff, writeHotChains=True)
