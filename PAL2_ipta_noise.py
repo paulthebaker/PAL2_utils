@@ -1,19 +1,11 @@
 #!/usr/bin/env python
 from __future__ import division
 
-import glob, os, shutil
+import os
 import argparse
-import numpy as np
 
-from matplotlib import use
-use('PDF') # use non-interactive backend for cluster
-import matplotlib.pyplot as plt
-
-import PAL2
 from PAL2 import PALmodels
-from PAL2 import PALdatafile
 from PAL2 import PALInferencePTMCMC as ptmcmc
-from PAL2 import bayesutils as bu
 
 
 #####
@@ -100,26 +92,3 @@ N = args.Nsamp
 Neff = args.Neff
 sampler.sample(p0, N, neff=Neff, writeHotChains=True)
 
-
-#####
-##  POST PROCESSING
-#####
-#TODO what other post processing do we want?  should this be a separate script?
-print "post processing for PSR: "+this_PSR+"\n"
-
-# read in chain file and set burn in to be 25% of chain length
-chain = np.loadtxt(chaindir+'/chain_1.txt')
-burn = chain.shape[0] // 4
-
-# plot posterior values to check for convergence
-fig1 = plt.figure(1)
-ax = fig1.add_subplot(1,1,1)
-ax.plot(chain[burn:,-4])
-ax.set_ylabel('log-posterior')
-fig1.savefig(plotsdir+'/posterior_chain.pdf')
-
-# plot triangle plot of fit parameters
-plt.rcParams['font.size'] = 6
-ax = bu.triplot(chain[burn:,:-4], labels=params[:], tex=False, figsize=(20,15))
-plt.savefig(plotsdir+'/param_tri.pdf')
-print "DONE"
