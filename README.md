@@ -36,7 +36,7 @@ The simplest fix is to **comment out lines 393-402 in PALdatafile.py**.
 For other runtime issues see my [notes](notes.md).
 
 # Notes on PAL2's noise parameters
-The covariance matrix for the basic noise model is:
+The covariance matrix for the basic white noise model is:
 
 _**C**<sub>t t' f f'</sub>_ = _&delta;<sub>t t'</sub>_ [ _&delta;<sub>f f'</sub>_ (_F<sup>2</sup> &sigma;<sub>SNR</sub><sup>2</sup>_ + _Q<sup>2</sup>_) + _J<sup>2</sup>_]
 
@@ -81,7 +81,7 @@ Note that ECORR is outside of the _&delta;<sub>f f'</sub> term.
 
 ECORRs should be smaller than the RMS timing noise.
 PAL2 uses log<sub>10</sub>(_J_) as its search parameter, so raw output of `-7` corresponds to 10<sup>-7</sup> sec, 100 ns.
-In PAL2 ECORR is keyed as `'jitter_equad'` (quadrature additive noise from jitter...) and uses flags like `IncJitter=True`
+In PAL2 ECORR is keyed as `'jitter_equad'` (quadrature additive noise from jitter...) and uses flags like `incJitterEquad=True`
 In the output PAL2 lavels ECORRs with names like:
 '''
 jitter_q_J1909-3744-Rcvr1_2_GASP
@@ -89,5 +89,12 @@ jitter_q_J1909-3744-Rcvr1_2_GASP
 
 In the IPTA dataset it appears only GBT and AO use simultaneous multiband observations (via the GASP/ASP, GUPPI/PUPPI backends).
 Including ECORR/Jitter for pulsars not observed by GBT or AO will cause errors.
+
+
+## Red Noise & DM Variations
+Red Noise and DM Variations are both handled as red power spectra, parameterized by an amplitude and a spectral index, _&gamma;_.
+PAL2 uses the log<sub>10</sub> amplitude and implements the spectrum as _f<sup> -&gamma;</sup>_.
+A returned spectral index of `2` is a red _f<sup> -2</sup>_ spectrum.
+
 
 # TODO
