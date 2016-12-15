@@ -30,7 +30,7 @@ Currently assumes a directory structure created by `PAL2_ipta_noise.py`.
 
 # PAL2 bugs with IPTA data
 PAL2 requires bandwidth flags in `.tim` files to load them with `addTempoPulsar()`.
-This caused problems generating HDF5 files for use in analysis.
+This caused problems generating HDF5 files for use in analysis, because not all observatories provided these flags.
 The simplest fix is to **comment out lines 393-402 in PALdatafile.py**.
 
 For other runtime issues see my [notes](notes.md).
@@ -65,7 +65,7 @@ All of these noise sources are assumed to be uncorrelated in time, hence the _&d
 _F_ is EFAC, an _ad hoc_ multiplicative **factor** applied to _&sigma;<sub>SNR</sub>_.
 If the radiometer and template fitting is accounted for correctly, this should always be 1.
 Each reciever and backend system gets its own EFAC.
-If a pulsar is observed by multiple observatories (_i.e._ GBT and AO), at multiple frequencies (_i.e._ 8 MHz and L-band at GBT), or the backend changes (_i.e._ GASP to GUPPI), a new EFAC paramter must be introduced.
+If a pulsar is observed by multiple observatories (_i.e._ GBT and AO), at multiple frequencies (_i.e._ 800 MHz and L-band at GBT), or the backend changes (_i.e._ GASP to GUPPI), a new EFAC paramter must be introduced.
 
 PAL2 labels EFACs with names like:
 ```
@@ -73,7 +73,7 @@ efac_J1909-3744-Rcvr_800_GUPPI
 efac_J1909-3744-PDFB_20CM
 efac_J1909-3744-NRT.BON.2000
 ```
-These contain info about the pulsar and instrument.
+These contain information about the pulsar and observing instrument.
 
 
 ## EQUAD
@@ -91,11 +91,11 @@ equad_J1909-3744-Rcvr_800_GASP
 ## ECORR / Jitter
 _J_ is ECORR, noise sources that are **correlated** in radio frequency such as pulse jitter.
 If a pulse is emitted earlier in the rotation phase than usual, the early TOAs will be correlated across the radio band.
-Note that ECORR is outside of the _&delta;<sub>f f'</sub> term.
+Note that ECORR is outside of the _&delta;<sub>f f'</sub>_ term.
 
 ECORRs should be smaller than the RMS timing noise.
 PAL2 uses log<sub>10</sub>(_J_) as its search parameter, so raw output of `-7` corresponds to 10<sup>-7</sup> sec, 100 ns.
-In PAL2 ECORR is keyed as `'jitter_equad'` (quadrature additive noise from jitter...) and uses flags like `incJitterEquad=True`
+In PAL2 ECORR is keyed as `'jitter_equad'` (quadrature additive noise from jitter...) and uses flags like `incJitterEquad=True`.
 In the output PAL2 labels ECORRs with names like:
 ```
 jitter_q_J1909-3744-Rcvr1_2_GASP
@@ -106,7 +106,7 @@ Including ECORR/Jitter for pulsars not observed by GBT or AO will cause errors.
 
 
 ## Red Noise & DM Variations
-Red Noise and DM Variations are both handled as red power spectra, parameterized by an amplitude and a spectral index, _&gamma;_.
+Red Noise and DM Variations are both handled as power spectra, parameterized by an amplitude and a spectral index, _&gamma;_.
 PAL2 uses the log<sub>10</sub> amplitude and implements the spectrum as _f<sup> -&gamma;</sup>_.
 A returned spectral index of `2` is a red _f<sup> -2</sup>_ spectrum.
 
