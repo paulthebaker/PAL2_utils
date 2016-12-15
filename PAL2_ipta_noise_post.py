@@ -14,7 +14,7 @@ from PAL2 import bayesutils as bu
 #####
 ##  ARGUMENT PARSER
 #####
-parser = argparse.ArgumentParser(description='run PAL2 noise analysis on IPTA pulsars')
+parser = argparse.ArgumentParser(description='run PAL2 signle pulsar noise analysis post processing')
 parser.add_argument('--pulsar', action='store', required=True,
                     help='pulsar to process')
 parser.add_argument('--Nburn', action='store', required=False, default=None, type=int,

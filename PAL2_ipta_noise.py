@@ -11,7 +11,7 @@ from PAL2 import PALInferencePTMCMC as ptmcmc
 #####
 ##  ARGUMENT PARSER
 #####
-parser = argparse.ArgumentParser(description='run PAL2 noise analysis on IPTA pulsars')
+parser = argparse.ArgumentParser(description='run PAL2 single pulsar noise analysis (designed for IPTA DR2)')
 parser.add_argument('--pulsar', action='store', required=True,
                     help='pulsar to analyze')
 parser.add_argument('--hdf5', action='store', required=True,
