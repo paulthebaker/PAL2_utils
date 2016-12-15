@@ -57,7 +57,7 @@ model = PALmodels.PTAmodels(h5filename, pulsars=this_PSR)
 basicModel = model.makeModelDict(incRedNoise=True, noiseModel='powerlaw', nfreqs=20, 
                                  incDM=True, dmModel='powerlaw', ndmfreqs=20,
                                  incEquad=True, incJitterEquad=jitter,
-                                 likfunc='mark6')
+                                 likfunc='mark9')
 
 model.initModel(basicModel, memsave=True, fromFile=False, verbose=True) # trying verbose=True to see output on cluster
 params = model.get_varying_parameters() # names of params for triplot labels
@@ -75,7 +75,7 @@ with open(this_PSR+'/params.txt', 'w') as pfile: # write params to file for use 
 p0 = model.initParameters()       # prior draw for starting location
 cov = model.initJumpCovariance()  # cov matrix for 
 
-lnlike = model.mark6LogLikelihood # log likelihood
+lnlike = model.mark9LogLikelihood # log likelihood
 lnprior = model.mark3LogPrior     # log prior
 
 # setup sampler
