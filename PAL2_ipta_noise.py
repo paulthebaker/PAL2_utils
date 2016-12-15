@@ -30,13 +30,7 @@ this_PSR = args.pulsar
 jitter = args.jitter
 
 # generate directories for this_PSR
-plotsdir = this_PSR+'/plots'
 chaindir = this_PSR+'/chain'
-if not os.path.exists(plotsdir):
-    try:
-        os.makedirs(plotsdir)
-    except OSError:
-        pass
 if not os.path.exists(chaindir):
     try:
         os.makedirs(chaindir)
@@ -73,7 +67,7 @@ with open(this_PSR+'/params.txt', 'w') as pfile: # write params to file for use 
 #####
 
 p0 = model.initParameters()       # prior draw for starting location
-cov = model.initJumpCovariance()  # cov matrix for 
+cov = model.initJumpCovariance()  # cov matrix
 
 lnlike = model.mark9LogLikelihood # log likelihood
 lnprior = model.mark3LogPrior     # log prior
