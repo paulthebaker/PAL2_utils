@@ -1,7 +1,7 @@
 #ERRORs encountered with PAL2 on IPTA DR2
 
 ## Jitter error
-The following pulsars raise a constructPhiMatrix ERROR when running with jitter inclueded in the model.
+The following pulsars raise a constructPhiMatrix ERROR when running with jitter included in the model.
 Simply omitting jtter seems to fix it.
 Presumably these pulsars have no multiband observations.
 
