@@ -58,6 +58,7 @@ Traceback (most recent call last):
         psr.toas, np.array(psr.flags), dt=1)
     File "/home/pbaker/py_envs/pulsar/lib/python2.7/site-packages/PAL2-2015.4-py2.7.egg/PAL2/PALutils.py", line 1009, in exploderMatrixNoSingles
         bucket_ref.append([times[i], flags[i]])
+IndexError: index 125 is out of bounds for axis 0 with size 125
 ```
 
 ## EFAC dimension mismatch
